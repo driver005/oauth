@@ -1,4 +1,4 @@
-module Oauth-server
+module github.com/driver005/oauth
 
 go 1.16
 
