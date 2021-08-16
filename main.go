@@ -1,7 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"github.com/driver005/oauth/driver"
+	helper "github.com/driver005/oauth/helpers"
+)
 
 func main() {
-	fmt.Println("main")
+	l := helper.New("test", "master")
+	driver.Init(l)
 }

@@ -7,10 +7,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ory/x/logrusx"
+	helper "github.com/driver005/oauth/helpers"
 )
 
-func ParseConnectionOptions(l *logrusx.Logger, dsn string) (maxConns int, maxIdleConns int, maxConnLifetime, maxIdleConnTime time.Duration, cleanedDSN string) {
+func ParseConnectionOptions(l *helper.Logger, dsn string) (maxConns int, maxIdleConns int, maxConnLifetime, maxIdleConnTime time.Duration, cleanedDSN string) {
 	maxConns = maxParallelism() * 2
 	maxIdleConns = maxParallelism()
 	maxConnLifetime = time.Duration(0)
@@ -85,7 +85,7 @@ func ParseConnectionOptions(l *logrusx.Logger, dsn string) (maxConns int, maxIdl
 }
 
 // FinalizeDSN will return a finalized DSN URI.
-func FinalizeDSN(l *logrusx.Logger, dsn string) string {
+func FinalizeDSN(l *helper.Logger, dsn string) string {
 	if strings.HasPrefix(dsn, "mysql://") {
 		var q url.Values
 		parts := strings.SplitN(dsn, "?", 2)
