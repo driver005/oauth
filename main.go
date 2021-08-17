@@ -2,10 +2,10 @@ package main
 
 import (
 	"github.com/driver005/oauth/driver"
-	helper "github.com/driver005/oauth/helpers"
+	"github.com/ory/x/logrusx"
 )
 
 func main() {
-	l := helper.New("test", "master")
+	l := logrusx.New("test", "master")
 	driver.Init(l)
 }

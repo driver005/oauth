@@ -1,6 +1,10 @@
 package doc
 
-import "time"
+import (
+	"time"
+
+	"github.com/ory/hydra/consent"
+)
 
 // swagger:parameters getLoginRequest
 type swaggerGetLoginRequestByChallenge struct {
@@ -63,7 +67,7 @@ type swaggerAcceptLoginRequest struct {
 	Challenge string `json:"login_challenge"`
 
 	// in: body
-	Body HandledLoginRequest
+	Body consent.HandledLoginRequest
 }
 
 // swagger:parameters acceptConsentRequest
@@ -73,7 +77,7 @@ type swaggerAcceptConsentRequest struct {
 	Challenge string `json:"consent_challenge"`
 
 	// in: body
-	Body HandledConsentRequest
+	Body consent.HandledConsentRequest
 }
 
 // swagger:parameters acceptLogoutRequest
@@ -90,7 +94,7 @@ type swaggerRejectConsentRequest struct {
 	Challenge string `json:"consent_challenge"`
 
 	// in: body
-	Body RequestDeniedError
+	Body consent.RequestDeniedError
 }
 
 // swagger:parameters rejectLoginRequest
@@ -100,7 +104,7 @@ type swaggerRejectLoginRequest struct {
 	Challenge string `json:"login_challenge"`
 
 	// in: body
-	Body RequestDeniedError
+	Body consent.RequestDeniedError
 }
 
 // swagger:parameters rejectLogoutRequest
@@ -110,7 +114,7 @@ type swaggerRejectLogoutRequest struct {
 	Challenge string `json:"logout_challenge"`
 
 	// in: body
-	Body RequestDeniedError
+	Body consent.RequestDeniedError
 }
 
 // A list of used consent requests.
@@ -118,7 +122,7 @@ type swaggerRejectLogoutRequest struct {
 type swaggerListHandledConsentRequestsResult struct {
 	// in: body
 	// type: array
-	Body []PreviousConsentSession
+	Body []consent.PreviousConsentSession
 }
 
 // swagger:model flushLoginConsentRequest

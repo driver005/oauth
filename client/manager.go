@@ -1,4 +1,4 @@
-package manager
+package client
 
 import (
 	"context"
@@ -8,13 +8,13 @@ import (
 	"github.com/driver005/oauth/models"
 )
 
-type Client interface {
-	ClientStorage
+type Manager interface {
+	Storage
 
 	Authenticate(ctx context.Context, id string, secret []byte) (*models.Client, error)
 }
 
-type ClientStorage interface {
+type Storage interface {
 	GetClient(ctx context.Context, id string) (fosite.Client, error)
 
 	CreateClient(ctx context.Context, c *models.Client) error

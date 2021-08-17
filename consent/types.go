@@ -1,4 +1,4 @@
-package models
+package consent
 
 import (
 	"database/sql"
@@ -16,6 +16,8 @@ import (
 
 	"github.com/ory/x/sqlcon"
 	"github.com/ory/x/sqlxx"
+
+	"github.com/driver005/oauth/models"
 )
 
 const (
@@ -41,7 +43,7 @@ type LoginSession struct {
 	Remember        bool           `db:"remember"`
 }
 
-func (_ LoginSession) TableName() string {
+func (LoginSession) TableName() string {
 	return "hydra_oauth2_authentication_session"
 }
 
@@ -183,7 +185,7 @@ type HandledConsentRequest struct {
 	SessionAccessToken sqlxx.MapStringInterface `db:"session_access_token" json:"-"`
 }
 
-func (_ HandledConsentRequest) TableName() string {
+func (HandledConsentRequest) TableName() string {
 	return "hydra_oauth2_consent_request_handled"
 }
 
@@ -321,7 +323,7 @@ type HandledLoginRequest struct {
 	AuthenticatedAt sqlxx.NullTime      `json:"-" db:"authenticated_at"`
 }
 
-func (_ HandledLoginRequest) TableName() string {
+func (HandledLoginRequest) TableName() string {
 	return "hydra_oauth2_authentication_request_handled"
 }
 
@@ -428,10 +430,10 @@ type LogoutRequest struct {
 	Accepted              bool           `json:"-" db:"accepted"`
 	Rejected              bool           `db:"rejected" json:"-"`
 	ClientID              sql.NullString `json:"-" db:"client_id"`
-	Client                *Client        `json:"client" db:"-"`
+	Client                *models.Client `json:"client" db:"-"`
 }
 
-func (_ LogoutRequest) TableName() string {
+func (LogoutRequest) TableName() string {
 	return "hydra_oauth2_logout_request"
 }
 
@@ -447,7 +449,7 @@ func (r *LogoutRequest) BeforeSave(_ *pop.Connection) error {
 
 func (r *LogoutRequest) AfterFind(c *pop.Connection) error {
 	if r.ClientID.Valid {
-		r.Client = &Client{}
+		r.Client = &models.Client{}
 		return sqlcon.HandleError(c.Where("id = ?", r.ClientID.String).First(r.Client))
 	}
 	return nil
@@ -503,7 +505,7 @@ type LoginRequest struct {
 	// Client is the OAuth 2.0 Client that initiated the request.
 	//
 	// required: true
-	Client *Client `json:"client" db:"-"`
+	Client *models.Client `json:"client" db:"-"`
 
 	ClientID string `json:"-" db:"client_id"`
 
@@ -534,7 +536,7 @@ type LoginRequest struct {
 	RequestedAt     time.Time      `json:"-" db:"requested_at"`
 }
 
-func (_ LoginRequest) TableName() string {
+func (LoginRequest) TableName() string {
 	return "hydra_oauth2_authentication_request"
 }
 
@@ -552,7 +554,7 @@ func (r *LoginRequest) BeforeSave(_ *pop.Connection) error {
 }
 
 func (r *LoginRequest) AfterFind(c *pop.Connection) error {
-	r.Client = &Client{}
+	r.Client = &models.Client{}
 	return sqlcon.HandleError(c.Where("id = ?", r.ClientID).First(r.Client))
 }
 
@@ -586,8 +588,8 @@ type ConsentRequest struct {
 	OpenIDConnectContext *OpenIDConnectContext `json:"oidc_context" db:"oidc_context"`
 
 	// Client is the OAuth 2.0 Client that initiated the request.
-	Client   *Client `json:"client" db:"-"`
-	ClientID string  `json:"-" db:"client_id"`
+	Client   *models.Client `json:"client" db:"-"`
+	ClientID string         `json:"-" db:"client_id"`
 
 	// RequestURL is the original OAuth 2.0 Authorization URL requested by the OAuth 2.0 client. It is the URL which
 	// initiates the OAuth 2.0 Authorization Code or OAuth 2.0 Implicit flow. This URL is typically not needed, but
@@ -626,7 +628,7 @@ type ConsentRequest struct {
 	RequestedAt            time.Time      `json:"-" db:"requested_at"`
 }
 
-func (_ ConsentRequest) TableName() string {
+func (ConsentRequest) TableName() string {
 	return "hydra_oauth2_consent_request"
 }
 
@@ -645,7 +647,7 @@ func (r *ConsentRequest) BeforeSave(_ *pop.Connection) error {
 }
 
 func (r *ConsentRequest) AfterFind(c *pop.Connection) error {
-	r.Client = &Client{}
+	r.Client = &models.Client{}
 	return sqlcon.HandleError(c.Where("id = ?", r.ClientID).First(r.Client))
 }
 

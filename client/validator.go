@@ -7,8 +7,6 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/ory/hydra/driver/config"
-
 	"github.com/ory/x/errorsx"
 
 	"github.com/pborman/uuid"
@@ -16,6 +14,7 @@ import (
 	"github.com/ory/x/stringslice"
 	"github.com/ory/x/stringsx"
 
+	"github.com/driver005/oauth/config"
 	"github.com/driver005/oauth/models"
 )
 

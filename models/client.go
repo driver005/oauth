@@ -9,8 +9,10 @@ import (
 	jose "gopkg.in/square/go-jose.v2" // Naming the dependency jose is important for go-swagger to work, see https://github.com/go-swagger/go-swagger/issues/1587
 
 	"github.com/ory/fosite"
-	"github.com/ory/hydra/x"
+
 	"github.com/ory/x/sqlxx"
+
+	"github.com/driver005/oauth/helpers"
 )
 
 // Client represents an OAuth 2.0 Client.
@@ -123,7 +125,7 @@ type Client struct {
 	// can use jwks_uri, it MUST NOT use jwks. One significant downside of jwks is that it does not enable key rotation
 	// (which jwks_uri does, as described in Section 10 of OpenID Connect Core 1.0 [OpenID.Core]). The jwks_uri and jwks
 	// parameters MUST NOT be used together.
-	JSONWebKeys *x.JoseJSONWebKeySet `json:"jwks,omitempty" db:"jwks"`
+	JSONWebKeys *helpers.JoseJSONWebKeySet `json:"jwks,omitempty" db:"jwks"`
 
 	// Requested Client Authentication method for the Token Endpoint. The options are client_secret_post,
 	// client_secret_basic, private_key_jwt, and none.
@@ -186,7 +188,7 @@ func (Client) TableName() string {
 
 func (c *Client) BeforeSave(_ *pop.Connection) error {
 	if c.JSONWebKeys == nil {
-		c.JSONWebKeys = new(x.JoseJSONWebKeySet)
+		c.JSONWebKeys = new(helpers.JoseJSONWebKeySet)
 	}
 
 	if c.Metadata == nil {

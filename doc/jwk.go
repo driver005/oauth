@@ -1,24 +1,8 @@
 package doc
 
-import "github.com/ory/hydra/x"
-
-// swagger:model jsonWebKeySetGeneratorRequest
-type createRequest struct {
-	// The algorithm to be used for creating the key. Supports "RS256", "ES512", "HS512", and "HS256"
-	// required: true
-	Algorithm string `json:"alg"`
-
-	// The "use" (public key use) parameter identifies the intended use of
-	// the public key. The "use" parameter is employed to indicate whether
-	// a public key is used for encrypting data or verifying the signature
-	// on data. Valid values are "enc" and "sig".
-	// required: true
-	Use string `json:"use"`
-
-	// The kid of the key to be created
-	// required: true
-	KeyID string `json:"kid"`
-}
+import (
+	"github.com/driver005/oauth/models"
+)
 
 // swagger:parameters getJsonWebKey deleteJsonWebKey
 type swaggerJsonWebKeyQuery struct {
@@ -57,7 +41,7 @@ type swaggerJwkUpdateSetKey struct {
 	Set string `json:"set"`
 
 	// in: body
-	Body x.JSONWebKey
+	Body models.JSONWebKey
 }
 
 // swagger:parameters createJsonWebKeySet
@@ -68,7 +52,7 @@ type swaggerJwkCreateSet struct {
 	Set string `json:"set"`
 
 	// in: body
-	Body createRequest
+	Body models.CreateRequest
 }
 
 // swagger:parameters getJsonWebKeySet deleteJsonWebKeySet
@@ -92,5 +76,5 @@ type swaggerJSONWebKeySet struct {
 	// an order of preference among them, although applications of JWK Sets
 	// can choose to assign a meaning to the order for their purposes, if
 	// desired.
-	Keys []x.JSONWebKey `json:"keys"`
+	Keys []models.JSONWebKey `json:"keys"`
 }
