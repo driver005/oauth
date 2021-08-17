@@ -5,8 +5,11 @@ go 1.16
 require (
 	github.com/evanphx/json-patch v0.5.2
 	github.com/gobuffalo/pop/v5 v5.3.4
+	github.com/gobuffalo/x v0.1.0 // indirect
+	github.com/gobwas/glob v0.2.3 // indirect
 	github.com/gorilla/sessions v1.2.1
 	github.com/gtank/cryptopasta v0.0.0-20170601214702-1f550f6f2f69 // indirect
+	github.com/jmoiron/sqlx v1.3.4 // indirect
 	github.com/julienschmidt/httprouter v1.3.0
 	github.com/mohae/deepcopy v0.0.0-20170929034955-c48cc78d4826 // indirect
 	github.com/oleiade/reflections v1.0.1 // indirect
@@ -21,5 +24,7 @@ require (
 	github.com/seatgeek/logrus-gelf-formatter v0.0.0-20210414080842-5b05eb8ff761
 	github.com/sirupsen/logrus v1.8.1
 	github.com/stretchr/testify v1.7.0 // indirect
-	gopkg.in/square/go-jose.v2 v2.5.1
+	github.com/tidwall/gjson v1.8.1 // indirect
+	golang.org/x/crypto v0.0.0-20210817164053-32db794688a5 // indirect
+	gopkg.in/square/go-jose.v2 v2.6.0
 )

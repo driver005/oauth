@@ -8,7 +8,6 @@ import (
 	"time"
 
 	"github.com/ory/hydra/spec"
-	"github.com/ory/hydra/x"
 	"github.com/ory/x/cmdx"
 	"github.com/ory/x/configx"
 	"github.com/ory/x/logrusx"
@@ -115,10 +114,10 @@ func (p *Provider) InsecureRedirects() []string {
 
 func (p *Provider) WellKnownKeys(include ...string) []string {
 	if p.AccessTokenStrategy() == "jwt" {
-		include = append(include, x.OAuth2JWTKeyName)
+		include = append(include, helpers.OAuth2JWTKeyName)
 	}
 
-	include = append(include, x.OpenIDConnectKeyName)
+	include = append(include, helpers.OpenIDConnectKeyName)
 	return stringslice.Unique(append(p.p.Strings(KeyWellKnownKeys), include...))
 }
 
@@ -286,7 +285,7 @@ func (p *Provider) GetRotatedSystemSecrets() [][]byte {
 
 	var rotated [][]byte
 	for _, secret := range secrets[1:] {
-		rotated = append(rotated, x.HashStringSecret(secret))
+		rotated = append(rotated, helpers.HashStringSecret(secret))
 	}
 
 	return rotated
@@ -301,19 +300,19 @@ func (p *Provider) GetSystemSecret() []byte {
 		}
 
 		p.l.Warnf("Configuration secrets.system is not set, generating a temporary, random secret...")
-		secret, err := x.GenerateSecret(32)
+		secret, err := helpers.GenerateSecret(32)
 		cmdx.Must(err, "Could not generate secret: %s", err)
 
 		p.l.Warnf("Generated secret: %s", secret)
-		p.generatedSecret = x.HashByteSecret(secret)
+		p.generatedSecret = helpers.HashByteSecret(secret)
 
 		p.l.Warnln("Do not use generate secrets in production. The secret will be leaked to the logs.")
-		return x.HashByteSecret(secret)
+		return helpers.HashByteSecret(secret)
 	}
 
 	secret := secrets[0]
 	if len(secret) >= 16 {
-		return x.HashStringSecret(secret)
+		return helpers.HashStringSecret(secret)
 	}
 
 	p.l.Fatalf("System secret must be undefined or have at least 16 characters but only has %d characters.", len(secret))

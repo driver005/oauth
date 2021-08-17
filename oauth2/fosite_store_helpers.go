@@ -24,8 +24,8 @@ import (
 	"github.com/ory/fosite/handler/openid"
 	"github.com/ory/x/sqlcon"
 
+	"github.com/driver005/oauth/consent"
 	"github.com/driver005/oauth/models"
-	"github.com/ory/hydra/consent"
 )
 
 func signatureFromJTI(jti string) string {

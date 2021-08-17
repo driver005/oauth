@@ -4,7 +4,7 @@ import (
 	"github.com/driver005/oauth/client"
 	"github.com/driver005/oauth/consent"
 	"github.com/driver005/oauth/helpers"
-	"github.com/driver005/oauth/jwt"
+	"github.com/driver005/oauth/jwk"
 	"github.com/ory/fosite"
 	"github.com/ory/fosite/handler/openid"
 )
@@ -23,8 +23,8 @@ type Registry interface {
 	AudienceStrategy() fosite.AudienceMatchingStrategy
 	ScopeStrategy() fosite.ScopeStrategy
 
-	AccessTokenJWTStrategy() jwt.JWTStrategy
-	OpenIDJWTStrategy() jwt.JWTStrategy
+	AccessTokenJWTStrategy() jwk.JWTStrategy
+	OpenIDJWTStrategy() jwk.JWTStrategy
 
 	OpenIDConnectRequestValidator() *openid.OpenIDConnectRequestValidator
 }
