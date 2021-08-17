@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ory/hydra/spec"
+	"github.com/driver005/oauth/spec"
 	"github.com/ory/x/cmdx"
 	"github.com/ory/x/configx"
 	"github.com/ory/x/logrusx"
@@ -189,10 +189,12 @@ func (p *Provider) DSN() string {
 
 	if len(dsn) > 0 {
 		return dsn
+	} else {
+		return "postgres://jntubuvx:D_QoM5kppIE5HjEkhx-bDPOkhftEFMeE@ziggy.db.elephantsql.com/jntubuvx"
 	}
 
-	p.l.Fatal("dsn must be set")
-	return ""
+	// p.l.Fatal("dsn must be set")
+	// return ""
 }
 
 func (p *Provider) EncryptSessionData() bool {

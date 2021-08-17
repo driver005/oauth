@@ -4,13 +4,17 @@ go 1.16
 
 require (
 	github.com/evanphx/json-patch v0.5.2
+	github.com/gobuffalo/nulls v0.4.0 // indirect
 	github.com/gobuffalo/pop/v5 v5.3.4
 	github.com/gobuffalo/x v0.1.0 // indirect
 	github.com/gobwas/glob v0.2.3 // indirect
 	github.com/gorilla/sessions v1.2.1
 	github.com/gtank/cryptopasta v0.0.0-20170601214702-1f550f6f2f69 // indirect
+	github.com/jackc/pgx/v4 v4.13.0 // indirect
 	github.com/jmoiron/sqlx v1.3.4 // indirect
 	github.com/julienschmidt/httprouter v1.3.0
+	github.com/luna-duclos/instrumentedsql v1.1.3 // indirect
+	github.com/luna-duclos/instrumentedsql/opentracing v0.0.0-20201103091713-40d03108b6f4 // indirect
 	github.com/mohae/deepcopy v0.0.0-20170929034955-c48cc78d4826 // indirect
 	github.com/oleiade/reflections v1.0.1 // indirect
 	github.com/ory/fosite v0.40.2

@@ -37,18 +37,14 @@ func AsymmetricKeypair(ctx context.Context, r InternalRegistry, g KeyGenerator, 
 }
 
 func GetOrCreateKey(ctx context.Context, r InternalRegistry, g KeyGenerator, set, prefix string) (*jose.JSONWebKey, error) {
-	fmt.Println("test")
 	keys, err := r.KeyManager().GetKeySet(ctx, set)
-	//fmt.Println(keys)
 	if errors.Is(err, helpers.ErrNotFound) || keys != nil && len(keys.Keys) == 0 {
-		fmt.Println("test 45")
 		r.Logger().Warnf("JSON Web Key Set \"%s\" does not exist yet, generating new key pair...", set)
 		keys, err = createKey(ctx, r, g, set)
-		fmt.Println("test")
+
 		if err != nil {
 			return nil, err
 		}
-		fmt.Println("test")
 	} else if err != nil {
 		return nil, err
 	}
@@ -56,19 +52,15 @@ func GetOrCreateKey(ctx context.Context, r InternalRegistry, g KeyGenerator, set
 	key, err := FindKeyByPrefix(keys, prefix)
 	if err != nil {
 		r.Logger().Warnf("JSON Web Key with prefix %s not found in JSON Web Key Set %s, generating new key pair...", prefix, set)
-		fmt.Println("test 1")
 		keys, err = createKey(ctx, r, g, set)
 		if err != nil {
 			return nil, err
 		}
-		fmt.Println("test 1")
 		key, err = FindKeyByPrefix(keys, prefix)
 		if err != nil {
 			return nil, err
 		}
-		fmt.Println("test 1")
 	}
-	fmt.Println(key)
 	return key, nil
 }
 
