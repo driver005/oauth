@@ -100,6 +100,7 @@ func (p *Persister) GetKeySet(ctx context.Context, set string) (*jose.JSONWebKey
 	}
 
 	keys := &jose.JSONWebKeySet{Keys: []jose.JSONWebKey{}}
+
 	for _, d := range js {
 		key, err := p.r.KeyCipher().Decrypt(d.Key)
 		if err != nil {
@@ -112,7 +113,6 @@ func (p *Persister) GetKeySet(ctx context.Context, set string) (*jose.JSONWebKey
 		}
 		keys.Keys = append(keys.Keys, c)
 	}
-
 	if len(keys.Keys) == 0 {
 		return nil, errorsx.WithStack(helpers.ErrNotFound)
 	}

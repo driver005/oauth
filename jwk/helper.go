@@ -48,7 +48,6 @@ func GetOrCreateKey(ctx context.Context, r InternalRegistry, g KeyGenerator, set
 	} else if err != nil {
 		return nil, err
 	}
-
 	key, err := FindKeyByPrefix(keys, prefix)
 	if err != nil {
 		r.Logger().Warnf("JSON Web Key with prefix %s not found in JSON Web Key Set %s, generating new key pair...", prefix, set)

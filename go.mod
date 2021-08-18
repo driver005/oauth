@@ -23,11 +23,14 @@ require (
 	github.com/luna-duclos/instrumentedsql/opentracing v0.0.0-20201103091713-40d03108b6f4 // indirect
 	github.com/mohae/deepcopy v0.0.0-20170929034955-c48cc78d4826 // indirect
 	github.com/oleiade/reflections v1.0.1 // indirect
+	github.com/ory/analytics-go/v4 v4.0.2
 	github.com/ory/fosite v0.40.2
+	github.com/ory/graceful v0.1.1
 	github.com/ory/herodot v0.9.7
 	github.com/ory/hydra v1.10.5
 	github.com/ory/x v0.0.276
 	github.com/pborman/uuid v1.2.1
+	github.com/phayes/freeport v0.0.0-20180830031419-95f893ade6f2 // indirect
 	github.com/pkg/errors v0.9.1
 	github.com/prometheus/client_golang v1.11.0 // indirect
 	github.com/rs/cors v1.8.0
@@ -37,6 +40,8 @@ require (
 	github.com/stretchr/testify v1.7.0 // indirect
 	github.com/tidwall/gjson v1.8.1 // indirect
 	github.com/uber/jaeger-client-go v2.29.1+incompatible // indirect
+	github.com/urfave/negroni v1.0.0 // indirect
+	go.uber.org/automaxprocs v1.4.0
 	golang.org/x/crypto v0.0.0-20210817164053-32db794688a5 // indirect
 	gopkg.in/square/go-jose.v2 v2.6.0
 )

@@ -1,16 +1,9 @@
 package main
 
-import (
-	"context"
-	"fmt"
-
-	"github.com/driver005/oauth/driver"
-)
+import "github.com/driver005/oauth/cmd"
 
 //go:generate swagger generate spec
 
 func main() {
-	newMigrateHandler().MigrateSQL()
-	d := driver.New(context.Background(), driver.DisablePreloading())
-	fmt.Println(d)
+	cmd.Execute()
 }
