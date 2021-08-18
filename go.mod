@@ -5,6 +5,10 @@ go 1.16
 require (
 	github.com/docker/docker v20.10.8+incompatible // indirect
 	github.com/evanphx/json-patch v0.5.2
+	github.com/go-openapi/errors v0.20.0 // indirect
+	github.com/go-openapi/strfmt v0.20.1 // indirect
+	github.com/go-openapi/swag v0.19.15 // indirect
+	github.com/go-openapi/validate v0.20.2 // indirect
 	github.com/gobuffalo/github_flavored_markdown v1.1.0 // indirect
 	github.com/gobuffalo/nulls v0.4.0 // indirect
 	github.com/gobuffalo/pop/v5 v5.3.4

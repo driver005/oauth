@@ -333,7 +333,7 @@
         ],
         "responses": {
           "204": {
-            "$ref": "#/responses/emptyResponse"
+            "description": "emptyResponse"
           },
           "404": {
             "description": "jsonError",
@@ -659,7 +659,7 @@
         ],
         "responses": {
           "204": {
-            "$ref": "#/responses/emptyResponse"
+            "description": "emptyResponse"
           },
           "401": {
             "description": "jsonError",
@@ -845,7 +845,7 @@
         ],
         "responses": {
           "204": {
-            "$ref": "#/responses/emptyResponse"
+            "description": "emptyResponse"
           },
           "401": {
             "description": "jsonError",
@@ -881,7 +881,7 @@
         "operationId": "prometheus",
         "responses": {
           "200": {
-            "$ref": "#/responses/emptyResponse"
+            "description": "emptyResponse"
           }
         }
       }
@@ -903,7 +903,7 @@
         "operationId": "oauthAuth",
         "responses": {
           "302": {
-            "$ref": "#/responses/emptyResponse"
+            "description": "emptyResponse"
           },
           "401": {
             "description": "jsonError",
@@ -1415,7 +1415,7 @@
         ],
         "responses": {
           "204": {
-            "$ref": "#/responses/emptyResponse"
+            "description": "emptyResponse"
           },
           "404": {
             "description": "jsonError",
@@ -1520,7 +1520,7 @@
         ],
         "responses": {
           "204": {
-            "$ref": "#/responses/emptyResponse"
+            "description": "emptyResponse"
           },
           "400": {
             "description": "jsonError",
@@ -1566,7 +1566,7 @@
         ],
         "responses": {
           "204": {
-            "$ref": "#/responses/emptyResponse"
+            "description": "emptyResponse"
           },
           "400": {
             "description": "jsonError",
@@ -1609,7 +1609,7 @@
         ],
         "responses": {
           "204": {
-            "$ref": "#/responses/emptyResponse"
+            "description": "emptyResponse"
           },
           "401": {
             "description": "jsonError",
@@ -1717,7 +1717,7 @@
         ],
         "responses": {
           "200": {
-            "$ref": "#/responses/emptyResponse"
+            "description": "emptyResponse"
           },
           "401": {
             "description": "jsonError",
@@ -1748,7 +1748,7 @@
         "operationId": "disconnectUser",
         "responses": {
           "302": {
-            "$ref": "#/responses/emptyResponse"
+            "description": "emptyResponse"
           }
         }
       }
@@ -1866,7 +1866,7 @@
         ],
         "responses": {
           "204": {
-            "$ref": "#/responses/emptyResponse"
+            "description": "emptyResponse"
           },
           "401": {
             "description": "jsonError",
