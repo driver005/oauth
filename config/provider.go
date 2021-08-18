@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/driver005/oauth/spec"
+	"github.com/ory/hydra/spec"
 	"github.com/ory/x/cmdx"
 	"github.com/ory/x/configx"
 	"github.com/ory/x/logrusx"

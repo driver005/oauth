@@ -2,7 +2,6 @@ package driver
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/ory/x/configx"
 
@@ -54,11 +53,15 @@ func DisablePreloading() OptionsModifier {
 	}
 }
 
-func New(ctx context.Context) registry.Registry {
+func New(ctx context.Context, opts ...OptionsModifier) registry.Registry {
 	o := newOptions()
 
+	for _, f := range opts {
+		f(o)
+	}
+
 	l := logrusx.New("ORY Hydra", config.Version)
-	c, err := config.New(l)
+	c, err := config.New(l, o.opts...)
 	if err != nil {
 		l.WithError(err).Fatal("Unable to instantiate configuration.")
 	}
@@ -75,7 +78,7 @@ func New(ctx context.Context) registry.Registry {
 	if err = r.Init(ctx); err != nil {
 		l.WithError(err).Fatal("Unable to initialize service registry.")
 	}
-	fmt.Println(o.preload)
+
 	// Avoid cold cache issues on boot:
 	if o.preload {
 		registry.CallRegistry(ctx, r)

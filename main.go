@@ -10,7 +10,7 @@ import (
 //go:generate swagger generate spec
 
 func main() {
-
-	d := driver.New(context.Background())
+	newMigrateHandler().MigrateSQL()
+	d := driver.New(context.Background(), driver.DisablePreloading())
 	fmt.Println(d)
 }

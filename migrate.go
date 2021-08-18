@@ -6,10 +6,10 @@ import (
 	"os"
 
 	"github.com/driver005/oauth/config"
-	"github.com/ory/hydra/driver"
+	"github.com/driver005/oauth/driver"
+	"github.com/driver005/oauth/registry"
 	"github.com/ory/x/configx"
 	"github.com/ory/x/errorsx"
-	"github.com/spf13/cobra"
 )
 
 type MigrateHandler struct{}
@@ -18,28 +18,22 @@ func newMigrateHandler() *MigrateHandler {
 	return &MigrateHandler{}
 }
 
-func (h *MigrateHandler) MigrateSQL(cmd *cobra.Command, args []string) {
-	var d driver.Registry
+func (h *MigrateHandler) MigrateSQL() {
+	var d registry.Registry
 
-	if len(args) != 1 {
-		fmt.Println(cmd.UsageString())
-		os.Exit(1)
-		return
-	}
 	d = driver.New(
-		cmd.Context(),
+		context.Background(),
 		driver.WithOptions(
-			configx.WithFlags(cmd.Flags()),
 			configx.SkipValidation(),
-			configx.WithValue(config.KeyDSN, args[0]),
+			configx.WithValue(config.KeyDSN),
 		),
 		driver.DisableValidation(),
-		driver.DisablePreloading())
+		driver.DisablePreloading(),
+	)
 
 	p := d.Persister()
 	conn := p.Connection(context.Background())
 	if conn == nil {
-		fmt.Println(cmd.UsageString())
 		fmt.Println("")
 		fmt.Printf("Migrations can only be executed against a SQL-compatible driver but DSN is not a SQL source.\n")
 		os.Exit(1)
