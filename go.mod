@@ -3,7 +3,9 @@ module github.com/driver005/oauth
 go 1.16
 
 require (
+	github.com/docker/docker v20.10.8+incompatible // indirect
 	github.com/evanphx/json-patch v0.5.2
+	github.com/gobuffalo/github_flavored_markdown v1.1.0 // indirect
 	github.com/gobuffalo/nulls v0.4.0 // indirect
 	github.com/gobuffalo/pop/v5 v5.3.4
 	github.com/gobuffalo/x v0.1.0 // indirect
@@ -27,8 +29,10 @@ require (
 	github.com/rs/cors v1.8.0
 	github.com/seatgeek/logrus-gelf-formatter v0.0.0-20210414080842-5b05eb8ff761
 	github.com/sirupsen/logrus v1.8.1
+	github.com/spf13/cobra v1.2.1 // indirect
 	github.com/stretchr/testify v1.7.0 // indirect
 	github.com/tidwall/gjson v1.8.1 // indirect
+	github.com/uber/jaeger-client-go v2.29.1+incompatible // indirect
 	golang.org/x/crypto v0.0.0-20210817164053-32db794688a5 // indirect
 	gopkg.in/square/go-jose.v2 v2.6.0
 )
