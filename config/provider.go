@@ -294,7 +294,7 @@ func (p *Provider) GetRotatedSystemSecrets() [][]byte {
 }
 
 func (p *Provider) GetSystemSecret() []byte {
-	secrets := p.p.Strings(KeyGetSystemSecret)
+	secrets := []string{"N6m0dFprLpC9qv~~yq9Z9v_RwYBz_FlY"} //p.p.Strings(KeyGetSystemSecret)
 
 	if len(secrets) == 0 {
 		if p.generatedSecret != nil {

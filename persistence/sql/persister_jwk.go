@@ -86,6 +86,10 @@ func (p *Persister) GetKey(ctx context.Context, set, kid string) (*jose.JSONWebK
 	}, nil
 }
 
+func BytesToString(data []byte) string {
+	return string(data[:])
+}
+
 func (p *Persister) GetKeySet(ctx context.Context, set string) (*jose.JSONWebKeySet, error) {
 	var js []jwk.SQLData
 	if err := p.Connection(ctx).
@@ -106,11 +110,11 @@ func (p *Persister) GetKeySet(ctx context.Context, set string) (*jose.JSONWebKey
 		if err != nil {
 			return nil, errorsx.WithStack(err)
 		}
-
 		var c jose.JSONWebKey
 		if err := json.Unmarshal(key, &c); err != nil {
 			return nil, errorsx.WithStack(err)
 		}
+
 		keys.Keys = append(keys.Keys, c)
 	}
 	if len(keys.Keys) == 0 {

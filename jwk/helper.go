@@ -38,6 +38,7 @@ func AsymmetricKeypair(ctx context.Context, r InternalRegistry, g KeyGenerator, 
 
 func GetOrCreateKey(ctx context.Context, r InternalRegistry, g KeyGenerator, set, prefix string) (*jose.JSONWebKey, error) {
 	keys, err := r.KeyManager().GetKeySet(ctx, set)
+
 	if errors.Is(err, helpers.ErrNotFound) || keys != nil && len(keys.Keys) == 0 {
 		r.Logger().Warnf("JSON Web Key Set \"%s\" does not exist yet, generating new key pair...", set)
 		keys, err = createKey(ctx, r, g, set)

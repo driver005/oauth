@@ -3,11 +3,11 @@ package jwk
 import (
 	"encoding/base64"
 
+	"github.com/gtank/cryptopasta"
 	"github.com/ory/x/errorsx"
 
 	"github.com/driver005/oauth/config"
 
-	"github.com/gtank/cryptopasta"
 	"github.com/pkg/errors"
 )
 
@@ -27,6 +27,7 @@ func aeadKey(key []byte) *[32]byte {
 
 func (c *AEAD) Encrypt(plaintext []byte) (string, error) {
 	keys := append([][]byte{c.c.GetSystemSecret()}, c.c.GetRotatedSystemSecrets()...)
+
 	if len(keys) == 0 {
 		return "", errors.Errorf("at least one encryption key must be defined but none were")
 	}
@@ -45,6 +46,7 @@ func (c *AEAD) Encrypt(plaintext []byte) (string, error) {
 
 func (c *AEAD) Decrypt(ciphertext string) (p []byte, err error) {
 	keys := append([][]byte{c.c.GetSystemSecret()}, c.c.GetRotatedSystemSecrets()...)
+
 	if len(keys) == 0 {
 		return nil, errors.Errorf("at least one decryption key must be defined but none were")
 	}
